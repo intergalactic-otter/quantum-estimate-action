@@ -1,0 +1,27 @@
+name: 'Quantum Resource Estimation Action'
+description: 'Estimate the resources required to run a quantum circuit'
+inputs:
+  file:
+    description: 'File containing the quantum circuit or algorithm'
+    required: true
+  label:
+    description: 'Label for the estimation'
+    required: true
+  detail:
+    description: 'Additional details for the estimation'
+    required: true
+  qubit-params-name:
+    description: 'Name of the qubit parameters to use'
+    required: true
+  qec-scheme-name:
+    description: 'Name of the Quantum Error Correction scheme to use'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.file }}
+    - ${{ inputs.label }}
+    - ${{ inputs.detail }}
+    - ${{ inputs.qubit-params-name }}
+    - ${{ inputs.qec-scheme-name }}
